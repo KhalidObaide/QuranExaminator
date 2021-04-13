@@ -3,17 +3,16 @@
 {% block content %}
 <h1 class="title">إضافة الآيات</h1>
 
-<form class="adding-form">
-    <textarea class="verse" type="text" placeholder="الآية" /></textarea>
+<form class="adding-form" action="/add_verse/" method="post">
+    <textarea autofocus required name="verse" class="verse" type="text" placeholder="الآية" /></textarea>
 
     <div class="info-container add-page">
-        <input type="number" class="verse-number" placeholder="رقم الآية"  />
-        <input list="surahs" name="surah" id="surah" placeholder="السورة" />
+        <input required name="number" type="number" class="verse-number" placeholder="رقم الآية"  />
+        <input required value="{{last_surah}}" list="surahs" name="surah" id="surah" placeholder="السورة" autocomplete="off"/>
         <datalist id="surahs">
-            <option value="Edge">ایدج</option>
-            <option value="Edge">ایدج</option>
-            <option value="Edge">ایدج</option>
-            <option value="Edge">ایدج</option>
+            {% for surah in all_surahs %}
+                <option value="{{surah.name}}"/>
+            {% endfor %}
         </datalist>
     </div>
     <input class="cta" type="submit" value="ثبت" />
@@ -21,13 +20,22 @@
 
 
 <h1 class="title mt-100">إضافة السورة</h1>
-<form class="adding-form">
+<form class="adding-form" method="post" action="/add_surah/">
     <div class="info-container add-page">
-        <input type="number" class="verse-number" placeholder="رقم السورة"  />
-        <input name="surah" id="surah" placeholder="السورة" />
+        <input name="number" type="number" class="verse-number" placeholder="رقم السورة"  required/>
+        <input name="surah" id="surah" placeholder="السورة" required/>
     </div>
     <input class="cta" type="submit" value="ثبت" />
 </form>
 
+<h1 class="title mt-100">تم اضافتها</h1>
+<div class="surah-cards-container">
+    {% for surah_verse in surah_verses %}
+    <div class="surah-card">
+        <h4>{{surah_verse.surah}}</h4>
+        <span>{{surah_verse.verses}}</span>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
 

@@ -3,6 +3,10 @@ An app that exams your quarn memorization.\
 However it is not listening to you, but it takes an exams from the number of the verse\
 Which means a random verse will come up and you have to type in the correct verse number and surah.
 
+## Screenshots:
+![ScreenShot No.1](shots/1.png?raw=true "Screenshot No.1")
+![ScreenShot No.2](shots/2.png?raw=true "Screenshot No.2")
+
 ## Usage:
 1. Clone the project
 2. Activate virtual Envirement

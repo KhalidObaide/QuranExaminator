@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Adding Page {% endblock %}
+{% block content %}
+<h1 class="title">إضافة الآيات</h1>
+
+<form class="adding-form">
+    <textarea class="verse" type="text" placeholder="الآية" /></textarea>
+
+    <div class="info-container add-page">
+        <input type="number" class="verse-number" placeholder="رقم الآية"  />
+        <input list="surahs" name="surah" id="surah" placeholder="السورة" />
+        <datalist id="surahs">
+            <option value="Edge">ایدج</option>
+            <option value="Edge">ایدج</option>
+            <option value="Edge">ایدج</option>
+            <option value="Edge">ایدج</option>
+        </datalist>
+    </div>
+    <input class="cta" type="submit" value="ثبت" />
+</form>
+
+
+<h1 class="title mt-100">إضافة السورة</h1>
+<form class="adding-form">
+    <div class="info-container add-page">
+        <input type="number" class="verse-number" placeholder="رقم السورة"  />
+        <input name="surah" id="surah" placeholder="السورة" />
+    </div>
+    <input class="cta" type="submit" value="ثبت" />
+</form>
+
+{% endblock %}
+

@@ -1,1 +1,45 @@
-<h1> Quiz Page </h1>
+
+{% extends 'base.html' %}
+{% block title %} Adding Page {% endblock %}
+{% block content %}
+<h1 class="verse-chosed">
+    ذالک الکتاب لاریب فیه هدی اللمتقین
+</h1>
+<form class="adding-form">
+    <div class="info-container">
+        <input type="number" class="verse-number" placeholder="رقم الآية"  />
+        <input list="surahs" name="surah" id="surah" placeholder="السورة" />
+        <datalist id="surahs">
+            <option value="Edge">ایدج</option>
+            <option value="Edge">ایدج</option>
+            <option value="Edge">ایدج</option>
+            <option value="Edge">ایدج</option>
+        </datalist>
+        <input type="number" class="surah-number" placeholder="رقم السورة"  />
+    </div>
+    <input class="cta" type="submit" value="ارسال" />
+</form>
+
+<div class="modal">
+    <img src="{{ url_for('static', filename='images/wrong.svg') }}" />
+
+    <div class="value-holders-container">
+        <span class="value-holder">
+            <h4>اسم السورة</h4>
+            <span>الرحمن</span>
+        </span>
+
+        <span class="value-holder">
+            <h4>رقم السورة</h4>
+            <span>32</span>
+        </span>
+
+        <span class="value-holder">
+            <h4>رقم الآية</h4>
+            <span>143</span>
+        </span>
+    </div>
+
+    <a class="cta white" href="/">المتابعة</a>
+</div>
+{% endblock %}

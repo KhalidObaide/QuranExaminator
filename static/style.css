@@ -1,0 +1,146 @@
+@font-face{
+    font-family : "Kufi";
+    src : url('./fonts/ReemKufi-Regular.ttf');
+}
+
+@font-face{
+    font-family : "Tajawal";
+    src : url('./fonts/Tajawal-Regular.ttf');
+}
+
+*{
+    margin : 0px;
+    padding : 0px;
+    box-sizing : border-box;
+    font-family : "Tajawal";
+}
+
+body{
+    direction : rtl;
+    text-align : center;
+}
+
+.title{
+    font-size : 48px;
+    margin : 20px;
+}
+
+.adding-form{
+    max-width : 600px;
+    margin : 0px auto;
+}
+
+.adding-form .verse{
+    width : 100%;
+    font-family : "Kufi";
+    padding : 10px;
+    font-size : 18px;
+    border : 1px solid #eee;
+    border-radius : 5px;
+    resize : vertical;
+    max-height : 400px;
+}
+
+.info-container{
+    margin : 20px 0px;
+    width : 100%;
+    display : flex;
+    justify-content : space-between;
+}
+
+.info-container.add-page *{
+    width : calc(50% - 10px);
+}
+
+.white{
+    color : white;
+}
+
+.cta{
+    display : block;
+    text-decoration : none;
+    width : 100%;
+    background-color : lightgreen;
+    border : 2px solid lightgreen;
+    padding : 10px 0px;
+    border-radius : 5px;
+    cursor : pointer;
+    font-size : 18px;
+    transition : all 0.2s ease;
+}
+.cta:hover{
+    background-color : transparent;
+    color : lightgreen;
+}
+
+.verse-chosed{
+    font-family : "Kufi";
+    font-size : 48px;
+    max-width : 90%;
+    margin : 0px auto;
+    margin-bottom : 50px;
+}
+
+header{
+    width : 100%;
+    background-color : #132C33;
+    padding : 20px 10px;
+    margin-bottom : 70px;
+    text-align : right;
+}
+
+header ul{
+    list-style : none;
+}
+header ul li{
+    display : inline-block;
+    margin : 0px 10px;
+}
+
+header a{
+    color : white;
+    text-decoration : none;
+    font-size : 18px;
+}
+
+
+.modal{
+    display : none;
+    min-width : 500px;
+    max-width : 100%;
+    border-radius : 5px;
+    padding : 20px;
+    position : fixed;
+    top : 50%;
+    left : 50%;
+    transform : translate(-50%, -50%);
+    background-color : white;
+    box-shadow : 0px 0px 100vw 100vh #0070ff63;
+
+}
+.modal img{
+    height : 100px;
+}
+
+.modal .value-holders-container{
+    margin : 20px 0px;
+    display : grid;
+    grid-template-columns : 33.3% 33.3% 33.3%;
+}
+
+.modal .value-holder{
+    padding : 20px;
+}
+
+.modal .value-holder span{
+    font-size : 38px;
+    font-weight : bold;
+    display : block;
+    margin-top : 10px;
+    border-top : 2px solid lightgreen;
+    padding-top : 10px;
+}
+
+.mt-100{
+    margin-top : 100px;
+}

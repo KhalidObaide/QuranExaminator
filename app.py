@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+import random
+import se
 
 
 # App configuration
@@ -24,9 +26,51 @@ class Verse(db.Model):
 
 
 # Exam route
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        verse_number, surah, surah_number = request.form.get('verse_number'), request.form.get('surah'), request.form.get('surah_number')
+        if not verse_number or not surah or not surah_number:
+            return "Please fill the required fields"
+        correct = True
+        if int(verse_number) != se.selected.number:
+            correct = False
+        if surah != Surah.query.get(se.selected.surah).name:
+            correct = False
+        if int(surah_number) != Surah.query.get(se.selected.surah).number:
+            correct = False
+        if correct:
+            return redirect('/?correct=True')
+        else:
+            return redirect('/?correct=False')
+
+
+    correct = request.args.get('correct')
+    if correct == 'True':
+        correct = True
+    elif correct == 'False':
+        correct = False
+    else:
+        correct = 'e'
+    ans = {}
+    if correct != 'e':
+        ans = {
+            "verse" : se.selected.number,
+            "surah" : Surah.query.get(se.selected.surah).name,
+            "surah_number" : Surah.query.get(se.selected.surah).number
+        }
+
+    all_verses = Verse.query.all()
+    selected_verse = random.choice(all_verses)
+    se.selected = selected_verse
+    all_surahs = Surah.query.all()
+
+    return render_template('index.html',
+        selected_verse=selected_verse,
+        all_surahs=all_surahs,
+        correct=correct,
+        ans=ans
+    )
 
 # adding page
 @app.route('/add')

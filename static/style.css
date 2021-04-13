@@ -105,7 +105,6 @@ header a{
 
 
 .modal{
-    display : none;
     min-width : 500px;
     max-width : 100%;
     border-radius : 5px;

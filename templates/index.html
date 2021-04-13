@@ -3,43 +3,71 @@
 {% block title %} Adding Page {% endblock %}
 {% block content %}
 <h1 class="verse-chosed">
-    ذالک الکتاب لاریب فیه هدی اللمتقین
+    {{selected_verse}}
 </h1>
-<form class="adding-form">
+<form class="adding-form" method="POST">
     <div class="info-container">
-        <input type="number" class="verse-number" placeholder="رقم الآية"  />
-        <input list="surahs" name="surah" id="surah" placeholder="السورة" />
+        <input autofocus name="verse_number" type="number" class="verse-number" placeholder="رقم الآية"  />
+        <input autocomplete="off" list="surahs" name="surah" id="surah" placeholder="السورة" />
         <datalist id="surahs">
-            <option value="Edge">ایدج</option>
-            <option value="Edge">ایدج</option>
-            <option value="Edge">ایدج</option>
-            <option value="Edge">ایدج</option>
+            {% for surah in all_surahs %}
+                <option value="{{surah.name}}"/>
+            {% endfor %}
         </datalist>
-        <input type="number" class="surah-number" placeholder="رقم السورة"  />
+        <input name="surah_number" type="number" class="surah-number" placeholder="رقم السورة"  />
     </div>
-    <input class="cta" type="submit" value="ارسال" />
+    <input class="cta submit" type="submit" value="ارسال" />
 </form>
 
+{% if correct != 'e' %}
 <div class="modal">
-    <img src="{{ url_for('static', filename='images/wrong.svg') }}" />
+    {% if correct %}
+        <img src="{{ url_for('static', filename='images/correct.svg') }}" />
+    {% else %}
+        <img src="{{ url_for('static', filename='images/wrong.svg') }}" />
+    {% endif %}
 
     <div class="value-holders-container">
         <span class="value-holder">
+            <h4>رقم الآية</h4>
+            <span>{{ans.verse}}</span>
+        </span>
+
+        <span class="value-holder">
             <h4>اسم السورة</h4>
-            <span>الرحمن</span>
+            <span>{{ans.surah}}</span>
         </span>
 
         <span class="value-holder">
             <h4>رقم السورة</h4>
-            <span>32</span>
+            <span>{{ans.surah_number}}</span>
         </span>
 
-        <span class="value-holder">
-            <h4>رقم الآية</h4>
-            <span>143</span>
-        </span>
     </div>
 
-    <a class="cta white" href="/">المتابعة</a>
+    <a class="cta white" id="close">اغلاق</a>
+    <script>
+        const closer = document.querySelector('#close');
+        const modal = document.querySelector('.modal');
+        const verse_number = document.querySelector('.verse-number');
+        const submit = document.querySelector('.submit');
+        submit.disabled = true;
+        closer.addEventListener('click', e=>{
+            modal.style.display = "none";
+            submit.disabled = false;
+        });
+        document.addEventListener('keyup', e=>{
+            if(e.which == 13){
+                if(modal.style.display != "none"){
+                    modal.style.display = "none";
+                    verse_number.value = "";
+                    submit.disabled = false;
+                }
+            }
+        });
+    </script>
+
 </div>
+{% endif %}
+
 {% endblock %}
